@@ -42,6 +42,7 @@ const SearchBox = () => {
           />
           <button
             className="search-icon"
+            data-testid="search-button"
             onClick={() => {
               if (toggle && state !== "") {
                 dispatch(
@@ -57,6 +58,7 @@ const SearchBox = () => {
         </div>
         <span
           className="close"
+          data-testid="close-button"
           onClick={() => {
             searchToggle(false);
             settoggle2(false);

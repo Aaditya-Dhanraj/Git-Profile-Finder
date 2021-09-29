@@ -69,7 +69,7 @@ const TopProfileSection = () => {
               />
             </div>
             <div className="topProfileIntroSection">
-              <span className="topProfileName">
+              <span data-testid="name" className="topProfileName">
                 {" "}
                 {data.name ? data.name : "Name Not Available"}
               </span>

@@ -88,7 +88,7 @@ const RepoSection = () => {
               description={el.description}
               language={el.languages_url}
             />
-          ))}{" "}
+          ))}
         </div>
       ) : (
         <SkeletonLoader2 />
