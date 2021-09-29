@@ -8,7 +8,7 @@ import "../index.css";
 const SearchBox = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [state, setstate] = useState("Aaditya-Dhanraj");
+  const [state, setstate] = useState("");
   const [toggle, settoggle] = useState(false);
   const [toggle2, settoggle2] = useState(false);
   const handleChange = (e) => {
@@ -25,7 +25,6 @@ const SearchBox = () => {
         history.push("/DetailsPage");
       }, 800);
       settoggle(false);
-
     }
   }, [Profile]);
 
