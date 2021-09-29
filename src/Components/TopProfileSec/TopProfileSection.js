@@ -5,14 +5,13 @@ import axios from "axios";
 import map from "../../Downloadable/map.svg";
 import link from "../../Downloadable/link.svg";
 import { PageUiActions } from "../../Store/uiSlice";
-import { BrowserRouter, Route, useHistory, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { BASE_URL_GITHUB_API } from "../../Utils/BaseURL";
 import SkeletonLoader1 from "../Skeleton/SkeletonLoader1";
 
 const TopProfileSection = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [test, settest] = useState(false);
   const [data, setData] = useState({});
   const Name = useSelector((state) => state.ui.Name);
   const GithubPerPage = useSelector((state) => state.ui.GithubPerPage);
@@ -30,7 +29,7 @@ const TopProfileSection = () => {
       .then((res) => {
         // console.log(res, "this is data");
         let response = res.data;
-        if (res.status == 200) {
+        if (res.status === 200) {
           setData(response);
           dispatch(
             PageUiActions.changeGithubTotalRepos({
@@ -64,6 +63,7 @@ const TopProfileSection = () => {
           <div className="topProfileSecMainBody">
             <div className="topProfileAvatarImgDiv">
               <img
+                alt="#img"
                 className="topProfileAvatarImg skeleton"
                 src={data.avatar_url ? data.avatar_url : null}
               />
@@ -78,7 +78,7 @@ const TopProfileSection = () => {
                 {data.bio ? data.bio : "No Bio Available"}
               </span>
               <div className="topProfileLocationDiv">
-                <img className="topProfileIcon" src={map} />
+                <img alt="#img" className="topProfileIcon" src={map} />
                 <span className="topProfileBio">
                   {" "}
                   {data.location ? data.location : "Not Available"}
@@ -92,7 +92,7 @@ const TopProfileSection = () => {
             </div>
           </div>
           <div className="topProfileGithubDiv">
-            <img className="topProfileIcon2" src={link} />
+            <img alt="#img" className="topProfileIcon2" src={link} />
             <span className="topProfileBio">
               {data.html_url ? data.html_url : "Not Available"}
             </span>

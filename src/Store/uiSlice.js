@@ -19,24 +19,27 @@ const PageUiSlice = createSlice({
       state.Profile = action.payload.Profile;
     },
     changeGithubTotalRepos(state, action) {
-      action.payload.GithubTotalRepos
-        ? (state.GithubTotalRepos = action.payload.GithubTotalRepos)
-        : (state.GithubTotalRepos = state.GithubTotalRepos);
-      action.payload.GithubPerPage
-        ? (state.GithubPerPage = action.payload.GithubPerPage)
-        : (state.GithubPerPage = state.GithubPerPage);
-      action.payload.GithubTotalPages
-        ? (state.GithubTotalPages = action.payload.GithubTotalPages)
-        : (state.GithubTotalPages = state.GithubTotalPages);
-      action.payload.GithubCurrentPage
-        ? (state.GithubCurrentPage = action.payload.GithubCurrentPage)
-        : (state.GithubCurrentPage = state.GithubCurrentPage);
-      action.payload.GithubPreviousPage
-        ? (state.GithubPreviousPage = action.payload.GithubPreviousPage)
-        : (state.GithubPreviousPage = state.GithubPreviousPage);
-      action.payload.GithubPrevPerPage
-        ? (state.GithubPrevPerPage = action.payload.GithubPrevPerPage)
-        : (state.GithubPrevPerPage = state.GithubPrevPerPage);
+      if (action.payload.GithubTotalRepos) {
+        state.GithubTotalRepos = action.payload.GithubTotalRepos;
+      }
+      if (action.payload.GithubPerPage) {
+        state.GithubPerPage = action.payload.GithubPer;
+      }
+      if (action.payload.GithubTotalPages) {
+        state.GithubTotalPages = action.payload.GithubTotalPages;
+      }
+
+      if (action.payload.GithubCurrentPage) {
+        state.GithubCurrentPage = action.payload.GithubCurrentPage;
+      }
+
+      if (action.payload.GithubPreviousPage) {
+        state.GithubPreviousPage = action.payload.GithubPreviousPage;
+      }
+
+      if (action.payload.GithubPrevPerPage) {
+        state.GithubPrevPerPage = action.payload.GithubPrevPerPage;
+      }
       console.log(
         state.GithubTotalRepos,
         state.GithubPerPage,

@@ -1,13 +1,10 @@
 import "../index.css";
 import axios from "axios";
-import { PageUiActions } from "../../Store/uiSlice";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, useHistory, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Cards = (props) => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const [data, setdata] = useState();
 
@@ -24,7 +21,7 @@ const Cards = (props) => {
       .then((res) => {
         console.log(res, "this is data");
         let response = res.data;
-        if (res.status == 200) {
+        if (res.status === 200) {
           setdata(response);
           //   console.log("inside fetch");
         } else if (res.status === 404) {
@@ -65,7 +62,7 @@ const Cards = (props) => {
             : "No description Available...."}
         </span>
         <div className="topProfileCardTagsMainDiv">
-          {!data || data == null || data == undefined || data == {} ? (
+          {!data || data === null || data === undefined || data === {} ? (
             <div className="topProfileCardTags">NotAvailable</div>
           ) : (
             Object.keys(data).map((el, idx) => (

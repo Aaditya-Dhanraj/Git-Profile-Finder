@@ -1,5 +1,4 @@
 import "../index.css";
-import Cards from "../Cards/Cards";
 import SkeletonLoader3 from "./SkeletonLoader3";
 
 const repos = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];

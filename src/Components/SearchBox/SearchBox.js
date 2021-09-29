@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter, Route, useHistory, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import "../index.css";
 

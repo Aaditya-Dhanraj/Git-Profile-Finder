@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "../index.css";
 import axios from "axios";
-import map from "../../Downloadable/map.svg";
-import link from "../../Downloadable/link.svg";
 import { PageUiActions } from "../../Store/uiSlice";
-import { BrowserRouter, Route, useHistory, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { BASE_URL_GITHUB_API } from "../../Utils/BaseURL";
 import Cards from "../Cards/Cards";
 import Pagination from "../Pagination/Pagination";
@@ -18,7 +16,6 @@ const RepoSection = () => {
   const Name = useSelector((state) => state.ui.Name);
   const GithubPerPage = useSelector((state) => state.ui.GithubPerPage);
   const GithubTotalRepos = useSelector((state) => state.ui.GithubTotalRepos);
-  const GithubTotalPages = useSelector((state) => state.ui.GithubTotalPages);
   const GithubCurrentPage = useSelector((state) => state.ui.GithubCurrentPage);
   const GithubPreviousPage = useSelector(
     (state) => state.ui.GithubPreviousPage
@@ -44,7 +41,7 @@ const RepoSection = () => {
       );
       getProfileData();
     }
-    if (data.length == 0) {
+    if (data.length === 0) {
       getProfileData();
     }
     console.log(data, "in Useeffect repos");
@@ -58,7 +55,7 @@ const RepoSection = () => {
       .then((res) => {
         // console.log(res, "this is data");
         let response = res.data;
-        if (res.status == 200) {
+        if (res.status === 200) {
           setData(response);
           console.log("inside fetch");
         } else if (res.status === 404) {
