@@ -8,9 +8,12 @@ const Error = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const ErroeMessage = useSelector((state) => state.ui.ErroeMessage);
-
+ 
   useEffect(() => {
     setTimeout(() => {
+      if (ErroeMessage === "No repo Found !") {
+        window.location.reload();
+      }
       history.push("/searchPage");
     }, 2000);
 
@@ -18,6 +21,13 @@ const Error = () => {
       PageUiActions.changeName({
         Name: "",
         Profile: false,
+      })
+    );
+
+    dispatch(
+      PageUiActions.changeSearch({
+        SearchRepo: "",
+        SearchRepoPrev: "",
       })
     );
   });

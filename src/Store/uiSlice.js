@@ -12,6 +12,8 @@ const PageUiSlice = createSlice({
     GithubCurrentPage: 1,
     GithubPreviousPage: 1,
     ErroeMessage: "Something went wrong !!!",
+    SearchRepo: "",
+    SearchRepoPrev: "",
   },
   reducers: {
     changeName(state, action) {
@@ -22,6 +24,14 @@ const PageUiSlice = createSlice({
     changeErrorMsg(state, action) {
       // console.log(action.payload.Name, action.payload.Profile);
       state.ErroeMessage = action.payload.ErroeMessage;
+    },
+    changeSearch(state, action) {
+      if (action.payload.SearchRepo) {
+        state.SearchRepo = action.payload.SearchRepo;
+      }
+      if (action.payload.SearchRepoPrev) {
+        state.SearchRepoPrev = action.payload.SearchRepoPrev;
+      }
     },
     changeGithubTotalRepos(state, action) {
       if (action.payload.GithubTotalRepos) {

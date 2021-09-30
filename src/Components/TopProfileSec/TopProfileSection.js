@@ -4,9 +4,10 @@ import "../index.css";
 import axios from "axios";
 import map from "../../Downloadable/map.svg";
 import link from "../../Downloadable/link.svg";
+import Profile from "../../Downloadable/profile.png";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useHistory } from "react-router-dom";
-import { BASE_URL_GITHUB_API } from "../../Utils/BaseURL";
+import { BASE_URL_GITHUB_API, AuthToken } from "../../Utils/BaseURL";
 import SkeletonLoader1 from "../Skeleton/SkeletonLoader1";
 
 const TopProfileSection = () => {
@@ -25,7 +26,11 @@ const TopProfileSection = () => {
 
   const getProfileData = () => {
     axios
-      .get(`${BASE_URL_GITHUB_API}/users/${Name}`, {})
+      .get(`${BASE_URL_GITHUB_API}/users/${Name}`, {
+        headers: {
+          Authorization: `Token ${AuthToken}`,
+        },
+      })
       .then((res) => {
         console.log(res.status, "this is data");
         let response = res.data;
@@ -70,9 +75,15 @@ const TopProfileSection = () => {
       })
       .catch((err) => {
         // setDataPopulated(true);
-        // console.log(err.response.status, "this is data from err");
-
-        if (err.response.status === 404) {
+        // console.log(err.request.err.response, "this is data from err");
+        if (err.request.status === "") {
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Device Offline !!!",
+            })
+          );
+          history.push("/ERROR404");
+        } else if (err.response.status === 404) {
           // console.log("Hello1");
           dispatch(
             PageUiActions.changeErrorMsg({
@@ -112,8 +123,18 @@ const TopProfileSection = () => {
             <div className="topProfileAvatarImgDiv">
               <img
                 alt="#img"
-                className="topProfileAvatarImg skeleton"
-                src={data.avatar_url ? data.avatar_url : null}
+                className={
+                  data.avatar_url
+                    ? "topProfileAvatarImg"
+                    : "topProfileAvatarImg skeleton"
+                }
+                src={
+                  data.avatar_url
+                    ? data.avatar_url
+                    : data.avatar_url === ""
+                    ? Profile
+                    : null
+                }
               />
             </div>
             <div className="topProfileIntroSection">

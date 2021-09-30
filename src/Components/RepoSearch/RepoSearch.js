@@ -2,47 +2,33 @@ import { useEffect, useState } from "react";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Typewriter from "typewriter-effect";
+import backIcon from "../../Downloadable/back.png";
 import "../index.css";
 
-const SearchBox = () => {
+const RepoSearch = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [state, setstate] = useState("");
   const [toggle, settoggle] = useState(false);
-  const [toggle2, settoggle2] = useState(false);
 
   const handleChange = (e) => {
     setstate(e.target.value);
-  };
-  const searchToggle = (val) => {
-    settoggle(val);
-  };
-  const Profile = useSelector((state) => state.ui.Profile);
-
-  useEffect(() => {
-    if (Profile) {
-      setTimeout(() => {
-        history.push("/DetailsPage");
-      }, 800);
-      settoggle(false);
+    if (e.target.value === "") {
+      dispatch(
+        PageUiActions.changeSearch({
+          SearchRepo: state,
+        })
+      );
     }
-  }, [Profile]);
+  };
+
+  const backButtonHandle = () => {
+    window.location.reload();
+  };
 
   return (
-    <div className={!toggle2 ? "searchBody" : "searchBody hide"}>
-     <div className="SEARCHBOXPAGEtitlre">
-        <Typewriter
-        
-          options={{
-            strings: ["Github", "Github Profile", "Github Profile Finder"],
-            autoStart: true,
-            loop: true,
-          }}
-        />
-        </div> 
-        {/* <span className="SEARCHBOXPAGEtitlre">Github Profile Finder</span> */}
-      <div className={toggle ? "search-wrapper active" : "search-wrapper"}>
+    <div className="RepoSearchMain">
+      <div className={toggle ? "search-wrapper2 active" : "search-wrapper2"}>
         <div className="input-holder">
           <input
             type="text"
@@ -58,7 +44,7 @@ const SearchBox = () => {
             //       );
             //       settoggle2(true);
             //     }
-            //     searchToggle(true);
+            //     settoggle(true);
             //   }
             // }}
           />
@@ -67,12 +53,10 @@ const SearchBox = () => {
             data-testid="search-button"
             onClick={() => {
               if (toggle && state !== "") {
-                dispatch(
-                  PageUiActions.changeName({ Name: state, Profile: true })
-                );
-                settoggle2(true);
+                dispatch(PageUiActions.changeSearch({ SearchRepo: state }));
+                console.log(state);
               }
-              searchToggle(true);
+              settoggle(true);
             }}
           >
             <span></span>
@@ -82,12 +66,17 @@ const SearchBox = () => {
           className="close"
           data-testid="close-button"
           onClick={() => {
-            searchToggle(false);
-            settoggle2(false);
+            settoggle(false);
           }}
         ></span>
       </div>
+      <img
+        onClick={backButtonHandle}
+        className="RepoSearchCloseButton"
+        alt="#img"
+        src={backIcon}
+      />
     </div>
   );
 };
-export default SearchBox;
+export default RepoSearch;

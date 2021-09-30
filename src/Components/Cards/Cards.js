@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { PageUiActions } from "../../Store/uiSlice";
+import { AuthToken } from "../../Utils/BaseURL";
 
 const Cards = (props) => {
   const history = useHistory();
@@ -21,7 +22,11 @@ const Cards = (props) => {
 
   const getlanguages = () => {
     axios
-      .get(`${props.language}`, {})
+      .get(`${props.language}`, {
+        headers: {
+          Authorization: `Token ${AuthToken}`,
+        },
+      })
       .then((res) => {
         console.log(res, "this is data");
         let response = res.data;
@@ -58,7 +63,14 @@ const Cards = (props) => {
       })
       .catch((err) => {
         // setDataPopulated(true);
-        if (err.response.status === 404) {
+        if (err.request.status == "") {
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Device Offline !!!",
+            })
+          );
+          history.push("/ERROR404");
+        } else if (err.response.status === 404) {
           // console.log("Hello1");
           dispatch(
             PageUiActions.changeErrorMsg({

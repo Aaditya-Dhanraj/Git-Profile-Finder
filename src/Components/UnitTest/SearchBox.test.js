@@ -15,7 +15,7 @@ describe("if searchbar working properly", () => {
     );
 
     //Assert
-    const outputElement = screen.getByText("Github Profile Finder");
+    const outputElement = screen.getByTestId("search-button");
     expect(outputElement).toBeInTheDocument();
   });
 
