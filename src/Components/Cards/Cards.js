@@ -1,10 +1,14 @@
 import "../index.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { PageUiActions } from "../../Store/uiSlice";
 
 const Cards = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [data, setdata] = useState();
 
@@ -25,25 +29,60 @@ const Cards = (props) => {
           setdata(response);
           //   console.log("inside fetch");
         } else if (res.status === 404) {
-          //   console.log("Hello3");
+          // console.log("Hello3");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "404 Not Found",
+            })
+          );
           history.push("/ERROR404");
         } else if (res.status === 403) {
-          //   console.log("Hello3");
           // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
           // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "API Request Limit Exeeded",
+            })
+          );
+          history.push("/ERROR404");
+        } else {
+          // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
+          // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Something Went Wrong !!!",
+            })
+          );
           history.push("/ERROR404");
         }
       })
       .catch((err) => {
         // setDataPopulated(true);
-        if (err.status === 404) {
-          //   console.log("Hello1");
+        if (err.response.status === 404) {
+          // console.log("Hello1");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "404 Not Found",
+            })
+          );
           history.push("/ERROR404");
-        } else {
-          console.log("Hello2");
-
+        } else if (err.response.status === 403) {
           // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
           // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "API Request Limit Exeeded",
+            })
+          );
+          history.push("/ERROR404");
+        } else {
+          // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
+          // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Something Went Wrong !!!",
+            })
+          );
           history.push("/ERROR404");
         }
 

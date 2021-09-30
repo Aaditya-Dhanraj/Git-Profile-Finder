@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Typewriter from "typewriter-effect";
 import "../index.css";
 
 const SearchBox = () => {
@@ -11,6 +11,7 @@ const SearchBox = () => {
   const [state, setstate] = useState("");
   const [toggle, settoggle] = useState(false);
   const [toggle2, settoggle2] = useState(false);
+
   const handleChange = (e) => {
     setstate(e.target.value);
   };
@@ -30,7 +31,16 @@ const SearchBox = () => {
 
   return (
     <div className={!toggle2 ? "searchBody" : "searchBody hide"}>
-      <span className="SEARCHBOXPAGEtitlre">Github Profile Finder</span>
+      <span className="SEARCHBOXPAGEtitlre">
+        <Typewriter
+          className="SEARCHBOXPAGEtitlre"
+          options={{
+            strings: ["Github", "Github Profile", "Github Profile Finder"],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+      </span>
       <div className={toggle ? "search-wrapper active" : "search-wrapper"}>
         <div className="input-holder">
           <input

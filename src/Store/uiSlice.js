@@ -11,12 +11,17 @@ const PageUiSlice = createSlice({
     GithubTotalPages: 1,
     GithubCurrentPage: 1,
     GithubPreviousPage: 1,
+    ErroeMessage: "Something went wrong !!!",
   },
   reducers: {
     changeName(state, action) {
       // console.log(action.payload.Name, action.payload.Profile);
       state.Name = action.payload.Name;
       state.Profile = action.payload.Profile;
+    },
+    changeErrorMsg(state, action) {
+      // console.log(action.payload.Name, action.payload.Profile);
+      state.ErroeMessage = action.payload.ErroeMessage;
     },
     changeGithubTotalRepos(state, action) {
       if (action.payload.GithubTotalRepos) {

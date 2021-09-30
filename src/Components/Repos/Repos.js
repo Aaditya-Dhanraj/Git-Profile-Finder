@@ -61,17 +61,59 @@ const RepoSection = () => {
           console.log("inside fetch");
         } else if (res.status === 404) {
           // console.log("Hello3");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "404 Not Found",
+            })
+          );
+          history.push("/ERROR404");
+        } else if (res.status === 403) {
+          // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
+          // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "API Request Limit Exeeded",
+            })
+          );
+          history.push("/ERROR404");
+        } else {
+          // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
+          // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Something Went Wrong !!!",
+            })
+          );
           history.push("/ERROR404");
         }
       })
       .catch((err) => {
         // setDataPopulated(true);
-        if (err.status === 404) {
+        if (err.response.status === 404) {
           // console.log("Hello1");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "404 Not Found",
+            })
+          );
+          history.push("/ERROR404");
+        } else if (err.response.status === 403) {
+          // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
+          // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "API Request Limit Exeeded",
+            })
+          );
           history.push("/ERROR404");
         } else {
           // dispatch(PageUiActions.changeName({ Name: "", Profile: false }));
           // history.push("/searchPage");
+          dispatch(
+            PageUiActions.changeErrorMsg({
+              ErroeMessage: "Something Went Wrong !!!",
+            })
+          );
           history.push("/ERROR404");
         }
 
