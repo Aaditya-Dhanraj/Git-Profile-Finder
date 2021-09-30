@@ -5,7 +5,7 @@ const PageUiSlice = createSlice({
   initialState: {
     Name: "",
     Profile: false,
-    GithubTotalRepos: 1,
+    GithubTotalRepos: 10,
     GithubPerPage: 10,
     GithubPrevPerPage: 10,
     GithubTotalPages: 1,
@@ -23,7 +23,7 @@ const PageUiSlice = createSlice({
         state.GithubTotalRepos = action.payload.GithubTotalRepos;
       }
       if (action.payload.GithubPerPage) {
-        state.GithubPerPage = action.payload.GithubPer;
+        state.GithubPerPage = action.payload.GithubPerPage;
       }
       if (action.payload.GithubTotalPages) {
         state.GithubTotalPages = action.payload.GithubTotalPages;

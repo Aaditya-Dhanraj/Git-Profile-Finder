@@ -39,6 +39,17 @@ const SearchBox = () => {
             className="search-input"
             placeholder="Type to search"
             onChange={handleChange}
+            // onKeyPress={(e) => {
+            //   if (e.key === "Enter") {
+            //     if (toggle && state !== "") {
+            //       dispatch(
+            //         PageUiActions.changeName({ Name: state, Profile: true })
+            //       );
+            //       settoggle2(true);
+            //     }
+            //     searchToggle(true);
+            //   }
+            // }}
           />
           <button
             className="search-icon"

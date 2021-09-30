@@ -14,12 +14,10 @@ const SkeletonLoader1 = () => {
           </div>
           <div className="topProfileIntroSection">
             <span className="topProfileName skeleton skeleton-text"> </span>
+            <span style={{width:"80%"}} className="topProfileBio  skeleton skeleton-text"> </span>
+            <span style={{width:"80%"}} className="topProfileBio  skeleton skeleton-text"> </span>
             <span className="topProfileBio  skeleton skeleton-text"> </span>
-            <div className="topProfileLocationDiv">
-              <img className="topProfileIcon  skeleton" src={map} alt="#img" />
-              <span className="topProfileBio  skeleton skeleton-text"> </span>
-            </div>
-            <span className="topProfileBio  skeleton skeleton-text">
+            <span  className="topProfileBio  skeleton skeleton-text">
               <div className="Invisible">Twitter : This is twitter text</div>{" "}
             </span>
           </div>

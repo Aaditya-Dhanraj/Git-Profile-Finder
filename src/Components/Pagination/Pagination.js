@@ -17,16 +17,19 @@ const Pagination = () => {
   };
   const handleSearch = (e) => {
     console.log(e.target.value);
+    let val = e.target.value * 1;
     dispatch(
       PageUiActions.changeGithubTotalRepos({
         GithubPerPage:
-          e.target.value < 1
+          val < 1
             ? 1
-            : e.target.value > GithubTotalRepos && e.target.value > 100
-            ? 100
-            : e.target.value > GithubTotalRepos && e.target.value < 100
+            : val >= GithubTotalRepos
             ? GithubTotalRepos
-            : e.target.value,
+            : val <= GithubTotalRepos && val > 100
+            ? 100
+            : val <= GithubTotalRepos && val < 100
+            ? val
+            : val,
       })
     );
   };

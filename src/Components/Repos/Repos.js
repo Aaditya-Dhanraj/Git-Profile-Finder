@@ -21,6 +21,7 @@ const RepoSection = () => {
     (state) => state.ui.GithubPreviousPage
   );
   const GithubPrevPerPage = useSelector((state) => state.ui.GithubPrevPerPage);
+
   useEffect(() => {
     if (GithubPreviousPage !== GithubCurrentPage) {
       setData([]);
