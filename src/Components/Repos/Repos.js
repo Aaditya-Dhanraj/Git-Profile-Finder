@@ -69,7 +69,7 @@ const RepoSection = () => {
         `${BASE_URL_GITHUB_API}/users/${Name}/repos?per_page=${GithubPerPage}&page=${GithubCurrentPage}`,
         {
           headers: {
-            Authorization: `Token ${process.env.REACT_APP_GITHUB_API_KEY}`,
+            Authorization: `token ${process.env.REACT_APP_GITHUB_API_KEY}`,
           },
         }
       )

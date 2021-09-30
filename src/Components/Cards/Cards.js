@@ -23,7 +23,7 @@ const Cards = (props) => {
     axios
       .get(`${props.language}`, {
         headers: {
-          Authorization: `Token ${process.env.REACT_APP_GITHUB_API_KEY}`,
+          Authorization: `token ${process.env.REACT_APP_GITHUB_API_KEY}`,
         },
       })
       .then((res) => {
