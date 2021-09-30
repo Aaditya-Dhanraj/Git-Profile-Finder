@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { PageUiActions } from "../../Store/uiSlice";
-import { AuthToken } from "../../Utils/BaseURL";
 
 const Cards = (props) => {
   const history = useHistory();
@@ -24,7 +23,7 @@ const Cards = (props) => {
     axios
       .get(`${props.language}`, {
         headers: {
-          Authorization: `Token ${AuthToken}`,
+          Authorization: `Token ${process.env.REACT_APP_GITHUB_API_KEY}`,
         },
       })
       .then((res) => {

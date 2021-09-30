@@ -7,7 +7,7 @@ import link from "../../Downloadable/link.svg";
 import Profile from "../../Downloadable/profile.png";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useHistory } from "react-router-dom";
-import { BASE_URL_GITHUB_API, AuthToken } from "../../Utils/BaseURL";
+import { BASE_URL_GITHUB_API } from "../../Utils/BaseURL";
 import SkeletonLoader1 from "../Skeleton/SkeletonLoader1";
 
 const TopProfileSection = () => {
@@ -28,7 +28,7 @@ const TopProfileSection = () => {
     axios
       .get(`${BASE_URL_GITHUB_API}/users/${Name}`, {
         headers: {
-          Authorization: `Token ${AuthToken}`,
+          Authorization: `Token ${process.env.REACT_APP_GITHUB_API_KEY}`,
         },
       })
       .then((res) => {

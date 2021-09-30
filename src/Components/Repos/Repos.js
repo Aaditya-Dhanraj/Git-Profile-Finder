@@ -4,7 +4,7 @@ import "../index.css";
 import axios from "axios";
 import { PageUiActions } from "../../Store/uiSlice";
 import { useHistory } from "react-router-dom";
-import { BASE_URL_GITHUB_API, AuthToken } from "../../Utils/BaseURL";
+import { BASE_URL_GITHUB_API } from "../../Utils/BaseURL";
 import Cards from "../Cards/Cards";
 import SkeletonLoader2 from "../Skeleton/SkeletonLoader2";
 
@@ -69,7 +69,7 @@ const RepoSection = () => {
         `${BASE_URL_GITHUB_API}/users/${Name}/repos?per_page=${GithubPerPage}&page=${GithubCurrentPage}`,
         {
           headers: {
-            Authorization: `Token ${AuthToken}`,
+            Authorization: `Token ${process.env.REACT_APP_GITHUB_API_KEY}`,
           },
         }
       )
