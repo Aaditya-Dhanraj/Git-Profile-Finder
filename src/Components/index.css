@@ -3,13 +3,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap");
 
 .SEARCHBOXPAGEtitlre {
-  position: sticky;
+  position: fixed;
   /* border: 2px solid white; */
   height: 100%;
   width: 100%;
   font-style: italic;
   top: 28%;
-  margin-top: 200px;
+  /* padding-top: 200px; */
+  margin-left: 0px;
+  padding-left: 0px;
   font-family: "Roboto Mono", monospace;
   font-size: 2rem;
   color: white;
@@ -57,7 +59,7 @@
     right: -35px !important;
   }
   .SEARCHBOXPAGEtitlre {
-    top: 20%;
+    top:16%;
   }
   .RepoPageCardComponent {
     width: 90% !important;

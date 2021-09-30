@@ -31,16 +31,16 @@ const SearchBox = () => {
 
   return (
     <div className={!toggle2 ? "searchBody" : "searchBody hide"}>
-      <span className="SEARCHBOXPAGEtitlre">
+      <div className="SEARCHBOXPAGEtitlre">
         <Typewriter
-          className="SEARCHBOXPAGEtitlre"
+        
           options={{
             strings: ["Github", "Github Profile", "Github Profile Finder"],
             autoStart: true,
             loop: true,
           }}
         />
-      </span>
+      </div>
       <div className={toggle ? "search-wrapper active" : "search-wrapper"}>
         <div className="input-holder">
           <input
