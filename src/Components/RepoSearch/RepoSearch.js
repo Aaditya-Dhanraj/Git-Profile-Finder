@@ -13,13 +13,6 @@ const RepoSearch = () => {
 
   const handleChange = (e) => {
     setstate(e.target.value);
-    if (e.target.value === "") {
-      dispatch(
-        PageUiActions.changeSearch({
-          SearchRepo: state,
-        })
-      );
-    }
   };
 
   const backButtonHandle = () => {
@@ -38,13 +31,21 @@ const RepoSearch = () => {
             onChange={handleChange}
             // onKeyPress={(e) => {
             //   if (e.key === "Enter") {
-            //     if (toggle && state !== "") {
+            //     if (toggle && e.target.value === "") {
             //       dispatch(
-            //         PageUiActions.changeName({ Name: state, Profile: true })
+            //         PageUiActions.changeSearch({
+            //           SearchRepo: "",
+            //           SearchRepoPrev: " ",
+            //         })
             //       );
-            //       settoggle2(true);
+            //       dispatch(
+            //         PageUiActions.changeGithubTotalRepos({
+            //           GithubPerPage: 1,
+            //           GithubCurrentPage: 1,
+            //           GithubPreviousPage: 2,
+            //         })
+            //       );
             //     }
-            //     settoggle(true);
             //   }
             // }}
           />

@@ -49,6 +49,12 @@ const RepoSection = () => {
     }
     if (SearchRepoPrev !== SearchRepo) {
       // setSearch(true);
+      dispatch(
+        PageUiActions.changeGithubTotalRepos({
+          GithubPerPage: GithubTotalRepos,
+          GithubTotalPages: 1,
+        })
+      );
       setData([]);
       dispatch(
         PageUiActions.changeSearch({
@@ -60,7 +66,7 @@ const RepoSection = () => {
     if (data.length === 0) {
       getProfileData();
     }
-    console.log(data, "in Useeffect repos");
+    // console.log(data, "in Useeffect repos");
   }, [data, GithubCurrentPage, GithubPerPage, GithubTotalRepos, SearchRepo]);
 
   const getProfileData = () => {
@@ -78,7 +84,11 @@ const RepoSection = () => {
         let response;
         if (SearchRepo !== "" && res.data.length > 0) {
           response = res.data.filter((el, key) => {
-            return el.name.includes(`${SearchRepo}`);
+            // console.log(el.name.toLowerCase().includes(`${SearchRepo.toLowerCase()}`);
+            // console.log(el.name.toLowerCase(), SearchRepo.toLowerCase());
+            return el.name
+              .toLowerCase()
+              .includes(`${SearchRepo.toLowerCase()}`);
           });
           if (response.length === 0) {
             // setSearch(false);
@@ -91,11 +101,6 @@ const RepoSection = () => {
               history.push("/ERROR404");
             }, 500);
           }
-          dispatch(
-            PageUiActions.changeGithubTotalRepos({
-              GithubTotalPages: Math.ceil(response.length / GithubPerPage),
-            })
-          );
         } else {
           response = res.data;
           if (res.data.length === 0) {

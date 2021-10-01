@@ -15,7 +15,7 @@ const Error = () => {
         window.location.reload();
       }
       history.push("/searchPage");
-    }, 2000);
+    }, 1500);
 
     dispatch(
       PageUiActions.changeName({
