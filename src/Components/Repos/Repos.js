@@ -144,7 +144,7 @@ const RepoSection = () => {
       })
       .catch((err) => {
         // setDataPopulated(true);
-        if (err.request.status == "") {
+        if (err.request.status === "") {
           dispatch(
             PageUiActions.changeErrorMsg({
               ErroeMessage: "Device Offline !!!",

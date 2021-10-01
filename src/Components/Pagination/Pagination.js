@@ -30,6 +30,7 @@ const Pagination = () => {
             : val <= GithubTotalRepos && val < 100
             ? val
             : val,
+        GithubCurrentPage: 1,
       })
     );
   };
